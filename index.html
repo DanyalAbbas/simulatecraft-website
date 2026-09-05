@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SimulateCraft — LLM agents in Minecraft</title>
+  <meta name="description" content="Spawn LLM-powered agents in Minecraft. Install in one command, then connect OpenRouter, 9Router, or your own API." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Pixelify+Sans:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="world-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <img class="brand-icon" src="assets/icon.png" alt="" width="32" height="32" />
+      <span class="brand-text">
+        <span class="brand-name">SimulateCraft</span>
+        <span class="tagline">Website</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="https://danyalabbas.github.io/SimulateCraft/">Docs</a>
+      <a href="https://github.com/DanyalAbbas/SimulateCraft">GitHub</a>
+      <a href="https://www.linkedin.com/in/danyalabbas">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main id="top" class="center-stage">
+    <section class="hero-install" aria-label="Install SimulateCraft">
+      <p class="hero-brand">SimulateCraft</p>
+      <h1>LLM agents that play Minecraft</h1>
+      <p class="lede">One command installs and launches. Then point it at OpenRouter, 9Router, or your own OpenAI-compatible API.</p>
+
+      <div class="os-tabs" role="tablist" aria-label="Operating system">
+        <button type="button" class="mc-btn is-active" data-os="windows" role="tab" aria-selected="true">Windows</button>
+        <button type="button" class="mc-btn" data-os="unix" role="tab" aria-selected="false">macOS / Linux</button>
+      </div>
+
+      <div class="cmd-panel is-active" data-panel="windows">
+        <p class="panel-label">PowerShell</p>
+        <div class="cmd cmd-hero">
+          <code id="cmd-win">irm https://raw.githubusercontent.com/DanyalAbbas/SimulateCraft/main/install.ps1 | iex</code>
+          <button type="button" class="mc-btn mc-btn-green copy" data-copy="cmd-win">Copy</button>
+        </div>
+      </div>
+
+      <div class="cmd-panel" data-panel="unix" hidden>
+        <p class="panel-label">Terminal</p>
+        <div class="cmd cmd-hero">
+          <code id="cmd-unix">curl -fsSL https://raw.githubusercontent.com/DanyalAbbas/SimulateCraft/main/install.sh | bash</code>
+          <button type="button" class="mc-btn mc-btn-green copy" data-copy="cmd-unix">Copy</button>
+        </div>
+      </div>
+
+      <div class="llm-note panel">
+        <div class="panel-title">
+          <h2>Connect an LLM</h2>
+          <p class="panel-sub">after install</p>
+        </div>
+        <p>Prefer <strong>OpenRouter</strong>, <strong>9Router</strong>, or your own API. Groq works for a quick try but hits rate limits fast.</p>
+        <ul class="llm-list">
+          <li><span class="who">OpenRouter</span> — set <code>OPENROUTER_API_KEY</code> in <code>.env</code></li>
+          <li><span class="who">9Router</span> — set <code>OPENAI_BASE_URL</code>, <code>OPENAI_API_KEY</code>, and <code>SIMULATECRAFT_MODEL</code></li>
+          <li><span class="who">Own API</span> — any OpenAI-compatible endpoint via <code>OPENAI_BASE_URL</code></li>
+        </ul>
+        <p class="hint"><a href="https://danyalabbas.github.io/SimulateCraft/llm-providers/">Provider setup docs →</a></p>
+      </div>
+
+      <ol class="after">
+        <li>Needs Node.js 18+, Git, and Docker Desktop for the bundled Minecraft server.</li>
+        <li>Viewer → <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a></li>
+        <li>Minecraft Java <strong>1.21.4</strong> → Multiplayer → <code>localhost</code></li>
+      </ol>
+    </section>
+
+    <section class="links" id="connect">
+      <div class="section-inner panel">
+        <div class="panel-title">
+          <h2>Connect</h2>
+          <p class="panel-sub">docs · source · author</p>
+        </div>
+        <ul class="link-list">
+          <li>
+            <a href="https://danyalabbas.github.io/SimulateCraft/">
+              <span class="link-title">Documentation</span>
+              <span class="link-meta">Getting started, LLM providers, viewer</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/DanyalAbbas/SimulateCraft">
+              <span class="link-title">GitHub</span>
+              <span class="link-meta">DanyalAbbas/SimulateCraft</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/danyalabbas">
+              <span class="link-title">LinkedIn</span>
+              <span class="link-meta">Danyal Abbas</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>SimulateCraft · MIT · <a href="https://github.com/DanyalAbbas">Danyal Abbas</a></p>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>
