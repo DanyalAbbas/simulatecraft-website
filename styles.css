@@ -499,7 +499,6 @@ a:hover { color: #ffe082; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .scale-label {
@@ -642,8 +641,9 @@ a:hover { color: #ffe082; }
 }
 
 @media (max-width: 720px) {
-  .quiz-scale { flex-direction: column; align-items: flex-start; }
-  .scale-label { min-width: auto; }
+  .quiz-scale { gap: 0.3rem; }
+  .scale-label { font-size: 0.55rem; min-width: 36px; }
+  .quiz-num { width: 28px; height: 28px; font-size: 0.75rem; }
   .skin-viewer-wrap { overflow: hidden; }
   #skin-viewer { max-width: 100%; height: auto; }
 }
