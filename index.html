@@ -24,9 +24,9 @@
       </span>
     </a>
     <nav class="nav">
-      <a href="https://danyalabbas.github.io/SimulateCraft/">Docs</a>
-      <a href="https://github.com/DanyalAbbas/SimulateCraft">GitHub</a>
-      <a href="https://www.linkedin.com/in/danyalabbas">LinkedIn</a>
+      <a href="https://danyalabbas.github.io/SimulateCraft/" target="_blank" rel="noopener noreferrer">Docs</a>
+      <a href="https://github.com/DanyalAbbas/SimulateCraft" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/danyalabbas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </nav>
   </header>
 
@@ -34,7 +34,7 @@
     <section class="hero-install" aria-label="Install SimulateCraft">
       <p class="hero-brand">SimulateCraft</p>
       <h1>LLM agents that play Minecraft</h1>
-      <p class="lede">One command installs and launches. Then point it at OpenRouter, 9Router, or your own OpenAI-compatible API.</p>
+      <p class="lede">One command clones SimulateCraft. Install Git + Node.js 18+ first, then add OpenRouter, 9Router, or your own API in <code>.env</code>.</p>
 
       <div class="os-tabs" role="tablist" aria-label="Operating system">
         <button type="button" class="mc-btn is-active" data-os="windows" role="tab" aria-selected="true">Windows</button>
@@ -47,6 +47,7 @@
           <code id="cmd-win">irm https://raw.githubusercontent.com/DanyalAbbas/SimulateCraft/main/install.ps1 | iex</code>
           <button type="button" class="mc-btn mc-btn-green copy" data-copy="cmd-win">Copy</button>
         </div>
+        <p class="hint">If that 503s: <code>irm https://cdn.jsdelivr.net/gh/DanyalAbbas/SimulateCraft@main/install.ps1 | iex</code></p>
       </div>
 
       <div class="cmd-panel" data-panel="unix" hidden>
@@ -68,13 +69,13 @@
           <li><span class="who">9Router</span> — set <code>OPENAI_BASE_URL</code>, <code>OPENAI_API_KEY</code>, and <code>SIMULATECRAFT_MODEL</code></li>
           <li><span class="who">Own API</span> — any OpenAI-compatible endpoint via <code>OPENAI_BASE_URL</code></li>
         </ul>
-        <p class="hint"><a href="https://danyalabbas.github.io/SimulateCraft/llm-providers/">Provider setup docs →</a></p>
+        <p class="hint"><a href="https://danyalabbas.github.io/SimulateCraft/llm-providers/" target="_blank" rel="noopener noreferrer">Provider setup docs →</a></p>
       </div>
 
       <ol class="after">
-        <li>Needs Node.js 18+, Git, and Docker Desktop for the bundled Minecraft server.</li>
-        <li>Viewer → <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a></li>
-        <li>Minecraft Java <strong>1.21.4</strong> → Multiplayer → <code>localhost</code></li>
+        <li>Before install: Git, Node.js 18+, and Docker Desktop (for bundled Minecraft).</li>
+        <li>After install: edit <code>~/SimulateCraft/.env</code>, then <code>.\run.ps1</code> / <code>./run.sh</code>.</li>
+        <li>Viewer → <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a> · Minecraft Java <strong>1.21.4</strong> → <code>localhost</code></li>
       </ol>
     </section>
 
@@ -86,19 +87,19 @@
         </div>
         <ul class="link-list">
           <li>
-            <a href="https://danyalabbas.github.io/SimulateCraft/">
+            <a href="https://danyalabbas.github.io/SimulateCraft/" target="_blank" rel="noopener noreferrer">
               <span class="link-title">Documentation</span>
               <span class="link-meta">Getting started, LLM providers, viewer</span>
             </a>
           </li>
           <li>
-            <a href="https://github.com/DanyalAbbas/SimulateCraft">
+            <a href="https://github.com/DanyalAbbas/SimulateCraft" target="_blank" rel="noopener noreferrer">
               <span class="link-title">GitHub</span>
               <span class="link-meta">DanyalAbbas/SimulateCraft</span>
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/danyalabbas">
+            <a href="https://www.linkedin.com/in/danyalabbas" target="_blank" rel="noopener noreferrer">
               <span class="link-title">LinkedIn</span>
               <span class="link-meta">Danyal Abbas</span>
             </a>
@@ -109,7 +110,7 @@
   </main>
 
   <footer class="foot">
-    <p>SimulateCraft · MIT · <a href="https://github.com/DanyalAbbas">Danyal Abbas</a></p>
+    <p>SimulateCraft · MIT · <a href="https://github.com/DanyalAbbas" target="_blank" rel="noopener noreferrer">Danyal Abbas</a></p>
   </footer>
 
   <script src="site.js"></script>

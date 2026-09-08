@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SimulateCraft — Create Your Agent</title>
+  <meta name="description" content="Create your AI agent for the NED University Minecraft simulation." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Pixelify+Sans:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="world-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img class="brand-icon" src="assets/icon.png" alt="" width="32" height="32" />
+      <span class="brand-text">
+        <span class="brand-name">SimulateCraft</span>
+        <span class="tagline">Agent Form</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="https://danyalabbas.github.io/SimulateCraft/" target="_blank" rel="noopener noreferrer">Docs</a>
+      <a href="https://github.com/DanyalAbbas/SimulateCraft" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top" class="center-stage">
+    <section class="hero-install">
+      <p class="hero-brand">Create Your Agent</p>
+      <h1>Spawn yourself into the NED University simulation</h1>
+      <p class="lede">Fill out the form below and your AI agent will be added to the Minecraft world. Teachers, students, and staff — everyone gets a spot.</p>
+    </section>
+
+    <form id="agent-form" class="agent-form" autocomplete="off">
+      <div class="form-layout">
+        <!-- LEFT COLUMN — form fields -->
+        <div class="form-left">
+          <!-- BASIC INFO -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Basic Info</h2>
+              <p class="panel-sub">who are you?</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="agent-name">Name</label>
+              <input class="form-input" type="text" id="agent-name" name="name" placeholder="e.g. Ahmed" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gender</label>
+              <div class="radio-row">
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="gender" value="male" required /> Male
+                </label>
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="gender" value="female" /> Female
+                </label>
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="gender" value="other" /> Other
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Role</label>
+              <div class="radio-row">
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="role" value="teacher" required /> Teacher
+                </label>
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="role" value="student" /> Student
+                </label>
+                <label class="mc-btn radio-btn">
+                  <input type="radio" name="role" value="staff" /> Staff
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="agent-dept">Department / Subject</label>
+              <input class="form-input" type="text" id="agent-dept" name="department" placeholder="e.g. Computer Science" />
+            </div>
+          </section>
+
+          <!-- PERSONALITY QUIZ -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Personality</h2>
+              <p class="panel-sub">big five (ocean)</p>
+            </div>
+            <p class="quiz-intro">Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree).</p>
+
+            <div id="quiz-container" class="quiz-container"></div>
+          </section>
+
+          <!-- FUN FACTS -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Fun Facts</h2>
+              <p class="panel-sub">tell us something</p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fun-fact">Something fun about yourself</label>
+              <textarea class="form-input form-textarea" id="fun-fact" name="fun_fact" rows="3" placeholder="e.g. I once debugged code in my dreams"></textarea>
+            </div>
+          </section>
+
+          <!-- SUBMIT -->
+          <div class="submit-row">
+            <button type="submit" class="mc-btn mc-btn-green submit-btn">Submit Agent</button>
+          </div>
+
+          <div id="form-status" class="form-status" hidden></div>
+        </div>
+
+        <!-- RIGHT COLUMN — skin + chart -->
+        <div class="form-right">
+          <!-- SKIN -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Skin</h2>
+              <p class="panel-sub">your minecraft look</p>
+            </div>
+            <p class="skin-intro">Randomly assigned. Click <strong>Reroll</strong> for another.</p>
+
+            <div class="skin-viewer-wrap">
+              <canvas id="skin-viewer" width="300" height="400"></canvas>
+            </div>
+
+            <div class="skin-actions">
+              <button type="button" id="reroll-skin" class="mc-btn mc-btn-green">Reroll</button>
+              <span id="skin-name" class="skin-name"></span>
+            </div>
+            <input type="hidden" id="skin-url" name="skin_url" />
+          </section>
+
+          <!-- PERSONALITY CHART -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Personality</h2>
+              <p class="panel-sub">your profile</p>
+            </div>
+            <div id="chart-wrap" class="chart-wrap">
+              <canvas id="personality-chart" width="320" height="320"></canvas>
+              <p class="chart-label">Complete the quiz to see your profile</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <footer class="foot">
+    <p>SimulateCraft · MIT · <a href="https://github.com/DanyalAbbas" target="_blank" rel="noopener noreferrer">Danyal Abbas</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skinview3d/bundles/skinview3d.bundle.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>
