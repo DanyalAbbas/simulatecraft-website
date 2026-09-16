@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>SimulateCraft — Create Your Agent</title>
   <meta name="description" content="Create your AI agent for the NED University Minecraft simulation." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
@@ -34,14 +34,12 @@
     <section class="hero-install">
       <p class="hero-brand">Create Your Agent</p>
       <h1>Spawn yourself into the NED University simulation</h1>
-      <p class="lede">Fill out the form below and your AI agent will be added to the Minecraft world. Teachers, students, and staff — everyone gets a spot.</p>
+      <p class="lede">Fill this out so your AI twin sounds like <em>you</em> — personality scores plus how you talk, what you want, and how you act under pressure.</p>
     </section>
 
     <form id="agent-form" class="agent-form" autocomplete="off">
       <div class="form-layout">
-        <!-- LEFT COLUMN — form fields -->
         <div class="form-left">
-          <!-- BASIC INFO -->
           <section class="panel form-section">
             <div class="panel-title">
               <h2>Basic Info</h2>
@@ -50,91 +48,160 @@
 
             <div class="form-group">
               <label class="form-label" for="agent-name">Name</label>
-              <input class="form-input" type="text" id="agent-name" name="name" placeholder="e.g. Ahmed" required />
+              <input class="form-input" type="text" id="agent-name" name="name" placeholder="e.g. Ahmed" required maxlength="64" />
             </div>
 
             <div class="form-group">
               <label class="form-label">Gender</label>
               <div class="radio-row">
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="gender" value="male" required /> Male
-                </label>
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="gender" value="female" /> Female
-                </label>
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="gender" value="other" /> Other
-                </label>
+                <label class="mc-btn radio-btn"><input type="radio" name="gender" value="male" required /> Male</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="gender" value="female" /> Female</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="gender" value="other" /> Other</label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Role</label>
               <div class="radio-row">
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="role" value="teacher" required /> Teacher
-                </label>
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="role" value="student" /> Student
-                </label>
-                <label class="mc-btn radio-btn">
-                  <input type="radio" name="role" value="staff" /> Staff
-                </label>
+                <label class="mc-btn radio-btn"><input type="radio" name="role" value="teacher" required /> Teacher</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="role" value="student" /> Student</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="role" value="staff" /> Staff</label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="agent-dept">Department / Subject</label>
-              <input class="form-input" type="text" id="agent-dept" name="department" placeholder="e.g. Computer Science" />
+              <input class="form-input" type="text" id="agent-dept" name="department" placeholder="e.g. Computer Science" maxlength="120" />
+            </div>
+
+            <div class="form-group role-detail" data-role="student" hidden>
+              <label class="form-label" for="role-year">Year / batch</label>
+              <input class="form-input" type="text" id="role-year" name="student_year" placeholder="e.g. 3rd year · 2023 batch" maxlength="120" />
+            </div>
+            <div class="form-group role-detail" data-role="teacher" hidden>
+              <label class="form-label" for="role-courses">Courses you teach</label>
+              <input class="form-input" type="text" id="role-courses" name="courses_taught" placeholder="e.g. Algorithms, Operating Systems" maxlength="200" />
+            </div>
+            <div class="form-group role-detail" data-role="staff" hidden>
+              <label class="form-label" for="role-office">Office / desk</label>
+              <input class="form-input" type="text" id="role-office" name="office" placeholder="e.g. Admin block · Exam cell" maxlength="120" />
             </div>
           </section>
 
-          <!-- PERSONALITY QUIZ -->
           <section class="panel form-section">
             <div class="panel-title">
-              <h2>Personality</h2>
-              <p class="panel-sub">big five (ocean)</p>
-            </div>
-            <p class="quiz-intro">Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree).</p>
-
-            <div id="quiz-container" class="quiz-container"></div>
-          </section>
-
-          <!-- FUN FACTS -->
-          <section class="panel form-section">
-            <div class="panel-title">
-              <h2>Fun Facts</h2>
-              <p class="panel-sub">tell us something</p>
+              <h2>How you act</h2>
+              <p class="panel-sub">makes the agent feel human</p>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="fun-fact">Something fun about yourself</label>
-              <textarea class="form-input form-textarea" id="fun-fact" name="fun_fact" rows="3" placeholder="e.g. I once debugged code in my dreams"></textarea>
+              <label class="form-label" for="speech-style">Speech style</label>
+              <select class="form-input" id="speech-style" name="speech_style" required>
+                <option value="" disabled selected>Choose one…</option>
+                <option value="formal">Formal / polite</option>
+                <option value="casual">Casual / chill</option>
+                <option value="witty">Witty / sarcastic</option>
+                <option value="quiet">Quiet / few words</option>
+                <option value="enthusiastic">Enthusiastic / hype</option>
+                <option value="mix">Mix of Urdu &amp; English</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="campus-goal">Campus goal right now</label>
+              <input class="form-input" type="text" id="campus-goal" name="campus_goal" required maxlength="200" placeholder="e.g. finish my FYP, run lab hours, make friends in class" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Under pressure I usually…</label>
+              <div class="radio-row wrap">
+                <label class="mc-btn radio-btn"><input type="radio" name="under_pressure" value="freeze" required /> Freeze</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="under_pressure" value="joke" /> Joke</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="under_pressure" value="ask_help" /> Ask for help</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="under_pressure" value="push_harder" /> Push harder</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="under_pressure" value="avoid" /> Avoid / leave</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">With other people I usually…</label>
+              <div class="radio-row wrap">
+                <label class="mc-btn radio-btn"><input type="radio" name="with_others" value="lead" required /> Lead</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="with_others" value="follow" /> Follow</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="with_others" value="help" /> Help everyone</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="with_others" value="solo" /> Prefer solo</label>
+                <label class="mc-btn radio-btn"><input type="radio" name="with_others" value="observe" /> Quietly observe</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="pet-peeve">Pet peeve</label>
+              <input class="form-input" type="text" id="pet-peeve" name="pet_peeve" maxlength="160" placeholder="e.g. people who skip queues / late group members" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="soft-spot">Soft spot</label>
+              <input class="form-input" type="text" id="soft-spot" name="soft_spot" maxlength="160" placeholder="e.g. juniors asking for help / good chai" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="catchphrase">Catchphrase or verbal quirk <span class="optional">(optional)</span></label>
+              <input class="form-input" type="text" id="catchphrase" name="catchphrase" maxlength="120" placeholder='e.g. "bhai scene kya hai"' />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">A day on campus I often…</label>
+              <div class="check-grid" id="day-life">
+                <label class="check-pill"><input type="checkbox" name="day_life" value="library" /> hang in the library</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="canteen" /> live in the canteen</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="late" /> show up late</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="office_hours" /> do office hours / meetings</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="lab" /> stay in the lab</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="sports" /> play / watch sports</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="events" /> join events / societies</label>
+                <label class="check-pill"><input type="checkbox" name="day_life" value="alone_walk" /> take quiet walks</label>
+              </div>
             </div>
           </section>
 
-          <!-- SUBMIT -->
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Personality</h2>
+              <p class="panel-sub">big five (ocean) · all 20 required</p>
+            </div>
+            <p class="quiz-intro">Rate each from 1 (Strongly Disagree) to 5 (Strongly Agree). Answer every question — blanks would fake your score.</p>
+            <p id="quiz-progress" class="quiz-progress">0 / 20 answered</p>
+            <div id="quiz-container" class="quiz-container"></div>
+          </section>
+
+          <section class="panel form-section">
+            <div class="panel-title">
+              <h2>Fun Facts</h2>
+              <p class="panel-sub">one more color detail</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fun-fact">Something fun about yourself</label>
+              <textarea class="form-input form-textarea" id="fun-fact" name="fun_fact" rows="3" maxlength="400" placeholder="e.g. I once debugged code in my dreams"></textarea>
+            </div>
+          </section>
+
           <div class="submit-row">
+            <button type="button" class="mc-btn" id="btn-preview-persona">Preview persona</button>
             <button type="submit" class="mc-btn mc-btn-green submit-btn">Submit Agent</button>
           </div>
-
           <div id="form-status" class="form-status" hidden></div>
         </div>
 
-        <!-- RIGHT COLUMN — skin + chart -->
         <div class="form-right">
-          <!-- SKIN -->
           <section class="panel form-section">
             <div class="panel-title">
               <h2>Skin</h2>
               <p class="panel-sub">your minecraft look</p>
             </div>
             <p class="skin-intro">Randomly assigned. Click <strong>Reroll</strong> for another.</p>
-
             <div class="skin-viewer-wrap">
               <canvas id="skin-viewer" width="300" height="400"></canvas>
             </div>
-
             <div class="skin-actions">
               <button type="button" id="reroll-skin" class="mc-btn mc-btn-green">Reroll</button>
               <span id="skin-name" class="skin-name"></span>
@@ -142,7 +209,6 @@
             <input type="hidden" id="skin-url" name="skin_url" />
           </section>
 
-          <!-- PERSONALITY CHART -->
           <section class="panel form-section">
             <div class="panel-title">
               <h2>Personality</h2>
@@ -152,6 +218,15 @@
               <canvas id="personality-chart" width="320" height="320"></canvas>
               <p class="chart-label">Complete the quiz to see your profile</p>
             </div>
+          </section>
+
+          <section class="panel form-section" id="persona-preview-panel" hidden>
+            <div class="panel-title">
+              <h2>Persona prompt</h2>
+              <p class="panel-sub">what the LLM will get</p>
+            </div>
+            <pre id="persona-preview" class="persona-preview"></pre>
+            <button type="button" class="mc-btn" id="btn-copy-persona">Copy prompt</button>
           </section>
         </div>
       </div>
